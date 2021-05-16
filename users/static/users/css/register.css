@@ -1,0 +1,136 @@
+body {
+  background-color: white;
+  margin: 0;
+}
+
+#main {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-image: repeating-linear-gradient(135deg, rgba(36, 26, 26, 0.137) 0px, rgba(129, 129, 129, 0.1) 2px, transparent 2px, transparent 4px), -webkit-gradient(linear, left top, right top, from(white), to(white));
+  background-image: repeating-linear-gradient(135deg, rgba(36, 26, 26, 0.137) 0px, rgba(129, 129, 129, 0.1) 2px, transparent 2px, transparent 4px), linear-gradient(90deg, white, white);
+}
+
+#box_div {
+  width: 37%;
+  height: 85%;
+  background-color: white;
+  border-radius: 15px;
+  -webkit-box-shadow: 0.5px 0.5px 5px grey;
+          box-shadow: 0.5px 0.5px 5px grey;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+#Sign_Up_text {
+  font-size: 1.6em;
+  position: static;
+  font-weight: 20px;
+  position: relative;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 10%;
+}
+
+#sign_up_div, #sign_up_div_login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: grey;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-top: 1px solid black;
+  position: relative;
+  top: 2%;
+  border-radius: 0px 0px 15px 15px;
+  width: 100%;
+  height: 11%;
+}
+
+#form_div, #form_div_login {
+  display: block;
+  overflow: auto;
+  height: 87%;
+}
+
+form {
+  margin-top: 20px;
+}
+
+strong {
+  color: black;
+}
+
+#login_box_div {
+  width: 39%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border-radius: 15px 15px 18px 18px;
+  border: 1px solid black;
+}
+
+#sign_up_div_login {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: grey;
+  border-radius: 0px 0px 17px 17px;
+  top: 0%;
+  height: 20%;
+}
+
+#form_div_login {
+  height: 70%;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 909px) {
+  #box_div {
+    width: 95%;
+    height: 80%;
+  }
+  #login_box_div {
+    width: 97%;
+    height: 53%;
+  }
+}
+
+.footer_text_div > a {
+  color: darkgrey;
+}
+
+.footer_text_div > a:hover {
+  color: black;
+}
+/*# sourceMappingURL=register.css.map */

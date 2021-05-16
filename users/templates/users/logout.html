@@ -1,0 +1,14 @@
+{% extends "users/base.html" %} 
+{% load static %}
+ {% block content %}
+<div id="login_box_div" style="display:flex;flex-direction:column;align-items: center; height:45%;justify-content: space-evenly;">
+  <h1>
+    Logged out
+  </h1>
+  <a href="{% url 'login'%}" style="color:blue">
+    Login Again
+  </a>
+
+</div>
+
+{% endblock content %}

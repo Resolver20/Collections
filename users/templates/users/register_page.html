@@ -1,0 +1,32 @@
+{% extends "users/base.html" %} {% load crispy_forms_tags %} {% load static %}
+
+
+{% block messages %} {% if messages %} {% for message in messages %}
+
+<div class="alert alert-{{message.tags}} fixed-top">{{message}}</div>
+
+{% endfor%} {% endif %} {% endblock messages %} 
+{% block content %}
+
+<div id="box_div">
+    <div id="form_div">
+        <div id="Sign_Up_text" class="container-fluid">Sign Up</div>
+
+        <form action="" method="POST" id="user">
+            <div class="container-fluid" id="fields">
+                {% csrf_token %} {{form|crispy}}
+            </div>
+        </form>
+    </div>
+
+    <div id="sign_up_div" class="container-fluid">
+        <div class="footer_text_div">
+            <a href="{% url 'login' %}">Go back</a>
+        </div>
+        <button type="submit" class="btn btn-outline-light" form="user">
+            Sign Up
+        </button>
+    </div>
+</div>
+
+{% endblock content %}

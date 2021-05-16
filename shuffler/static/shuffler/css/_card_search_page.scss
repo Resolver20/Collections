@@ -1,0 +1,141 @@
+#main_search_div{
+    @include flexing($direction:column);
+    width:96.5%;
+    height:100%;
+    padding:0;
+    margin:0;
+    overflow:auto;
+}
+#search_div{
+    @include flexing($justification:space-around);
+    // gap:1%;
+    width:100%;
+    border-bottom:1px solid  var(--icon_color);
+    height:150px;
+    background-color:  var(--main_background_color);
+    align-items:center;
+    overflow:auto;
+
+    // background-color: yellow;
+}
+#search_div_text{
+    font-size:1.7em;
+    color:var(--icon_color);
+font-family: 'Rock Salt', cursive;
+
+}
+#search_bar{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    width:100%;
+    height:100%;
+    // background-color: purple;
+}
+#search_bar_main_div{
+    width:44%;
+    height:100px;
+    overflow:auto;
+    @include flexing($direction:column);
+}
+#radio_buttons{
+    padding-left:10px;
+    @include flexing();
+    align-self:flex-start;
+    gap:10px;
+}
+#options{
+    @include flexing();
+    gap:5px;
+    color:var(--icon_color);
+}
+#search_content{
+    @extend #content;
+    height:calc(100%-150px);
+    padding:10px;
+    width:100%;
+}
+#card_search_input{
+    border:none;
+    border-bottom:1px solid var(--icon_color);
+    border-left:1px solid var(--icon_color);
+    border-top:1px solid var(--icon_color);
+    // background-color: pink;
+    padding-left:1%;
+    font-size:1em;
+    width:100%;
+    height:50%;
+}
+#card_search_button{
+    outline:none;
+    border:none;
+
+    background-color: transparent;
+    border-bottom:1px solid var(--icon_color);
+    border-left:1px solid var(--icon_color);
+    border-right:1px solid var(--icon_color);
+    @include flexing();
+    border-top:1px solid var(--icon_color);
+    width:20%;
+    height:50%;
+    &:hover{
+        #card_search_icon{
+            color:var(--main_background_color);
+        }
+        background-color: rgb(99, 99, 207);
+    }
+}
+#card_search_icon{
+    color:var(--icon_color);
+}
+#save_hyperlink_icon{
+    color:grey;
+}
+#tick{
+    color:black;
+    width:30px;
+    height:30px;
+    opacity:0;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    animation-delay:0.1s;
+}
+#save_hyperlink_button{
+    animation-fill-mode: forwards;
+    animation-duration:1s;
+    position:relative;
+    left:-17%;
+    &:hover{
+        #save_hyperlink_icon{
+           color:rgb(111,224,178);
+    }
+    }
+}
+@keyframes opaciting_up{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+        
+    }
+}
+@keyframes opaciting_down{
+    from{
+        opacity:1;
+    }
+    to{
+        opacity:0;
+        
+    }
+}
+
+@keyframes downing{
+  from{
+    background-size: 100% 100%;
+  }
+  to{
+    background-size: 100% 200%;
+
+  }
+}

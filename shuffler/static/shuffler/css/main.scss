@@ -1,0 +1,22 @@
+@import "./mixins";
+@import "./side_header";
+@import "./content";
+@import "./data_cards";
+@import "./card_search_page";
+@import "./middle_card";
+@import "./loader";
+@import "./media_queries";
+
+#main{
+    background-color: var(--main_background_color);
+    height:100vh;
+    padding:0px;
+    margin:0px;
+
+    @include flexing($alignment:flex-end,$justification:space-between);
+
+}
+
+a{
+    pointer-events: var(--anchor_click_events);
+}
