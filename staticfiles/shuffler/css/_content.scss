@@ -9,17 +9,11 @@
 
 #column_1,#column_2,#column_3,#column_4 {
     margin:10px;
-    background-color: transparent;
-    border-radius:15px;
+    padding-bottom:20px;
+    background-color: var(--main_background_color);
     gap:20px;
     filter:blur(var(--blurring));
     width:300px;
     @include flexing($justification:flex-start,$direction:column);
 }
 
-#center_text{
-    position:absolute;
-    top:45%;
-    display:none;
-    color:var(--bottom_icon_color);
-}

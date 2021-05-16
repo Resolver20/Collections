@@ -82,6 +82,10 @@
   font-size: 2em;
 }
 
+#Add_new:hover {
+  color: blue;
+}
+
 #edit_mode_button {
   outline: none;
   border: none;
@@ -107,32 +111,11 @@
 
 #Add_new_button {
   position: relative;
-  top: 5px;
-  left: 5px;
+  top: -3px;
+  left: 2px;
   outline: none;
   border: none;
   background-color: transparent;
-  width: 30px;
-  height: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-
-#Add_new_button:hover #Add_new {
-  color: blue;
 }
 
 #binging_page_button, #finished_page_button, #dark_mode_button {
@@ -189,8 +172,7 @@
 
 #column_1, #column_2, #column_3, #column_4 {
   margin: 10px;
-  background-color: transparent;
-  border-radius: 15px;
+  background-color: var(--main_background_color);
   gap: 20px;
   -webkit-filter: blur(var(--blurring));
           filter: blur(var(--blurring));
@@ -245,8 +227,14 @@
       flex-wrap: nowrap;
 }
 
-a {
-  text-decoration: none;
+img {
+  max-width: 100%;
+  background-color: var(--main_background_color);
+  border-radius: 15px;
+}
+
+a > img {
+  width: 300px;
 }
 
 .edit_card_slide {
@@ -499,8 +487,8 @@ a {
           animation-duration: 1s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 
 #save_hyperlink_button {
@@ -575,23 +563,14 @@ a {
   -webkit-box-shadow: 1px 1px 5px var(--icon_color);
           box-shadow: 1px 1px 5px var(--icon_color);
   border: 1px solid var(--icon_color);
-  overflow: auto;
+  overflow: hidden;
   position: absolute;
   left: 4%;
   width: 93%;
   top: 15%;
   height: 75%;
-  display: none;
-  background-color: white;
-}
-
-#middle_child_1 {
-  width: 100%;
-  height: 100%;
   background-color: var(--main_background_color);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -606,7 +585,7 @@ a {
       flex-wrap: nowrap;
 }
 
-#card_handler_div {
+#image_handler_div {
   background-color: transparent;
   width: 90%;
   height: 70%;
@@ -650,10 +629,44 @@ a {
   color: red;
 }
 
-.card,
-#card_handler {
-  height: 150px;
-  width: 300px;
+#image_handler {
+  width: 95%;
+  height: auto;
+  background-color: var(--main_background_color);
+  color: var(--icon_color);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  font-size: 20px;
+  top: -5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+#box {
+  width: 93%;
+  height: 30%;
+  background-color: var(--main_background_color);
+  border-radius: 15px;
+  -webkit-box-shadow: 0.5px 0.5px 5px var(--bottom_icon_color);
+          box-shadow: 0.5px 0.5px 5px var(--bottom_icon_color);
+  padding: 1.5%;
+  font-size: 170%;
+  position: relative;
+  bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -669,58 +682,13 @@ a {
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  border-radius: 15px;
-  color: #d8d1d1;
-  padding: 10px;
-  overflow: hidden;
-  background-color: #ada4a4;
-  white-space: break-spaces;
-}
-
-#card_handler {
-  border: 1px dashed var(--icon_color);
-  margin: auto;
-}
-
-h1 {
-  color: white;
-  font-family: "Caveat", cursive;
-  font-size: 30px;
-}
-
-#box {
-  width: 93%;
-  height: 30%;
-  background-color: var(--main_background_color);
-  border-radius: 15px;
-  -webkit-box-shadow: 0.5px 0.5px 3px var(--bottom_icon_color);
-          box-shadow: 0.5px 0.5px 3px var(--bottom_icon_color);
-  padding: 1.5%;
-  font-size: 170%;
-  position: relative;
-  bottom: 20px;
-  overflow: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  gap: 10%;
 }
 
 #input_main_div {
-  height: 95%;
+  height: 100%;
   width: 60%;
-  overflow: auto;
+  padding-bottom: 4%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -733,7 +701,7 @@ h1 {
           justify-content: center;
 }
 
-input[type="text"] {
+input[type=text] {
   font-size: 60%;
   border: none;
   margin: 0;
@@ -746,15 +714,9 @@ input[type="text"] {
   overflow: auto;
 }
 
-input[type="range"] {
-  width: 100%;
-  color: black;
-  margin-top: 5%;
-}
-
 #plus_button_div {
   width: 15%;
-  height: 70px;
+  height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -781,6 +743,25 @@ input[type="range"] {
 
 #plus_button:hover {
   color: blue;
+}
+
+#image_icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: 2px;
 }
 
 @-webkit-keyframes spinner {
@@ -813,7 +794,7 @@ input[type="range"] {
   border-top-color: #6363cf;
   -webkit-animation: spinner .6s linear infinite;
           animation: spinner .6s linear infinite;
-  z-index: 2;
+  z-index: 1;
 }
 
 #spinner_div {
@@ -894,7 +875,7 @@ input[type="range"] {
 }
 
 #main {
-  background-color: var(--main_background_color);
+  background-color: white;
   height: 100vh;
   padding: 0px;
   margin: 0px;

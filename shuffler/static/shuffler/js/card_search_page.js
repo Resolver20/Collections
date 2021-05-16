@@ -54,7 +54,7 @@ function Show_user_hyperlinks(){
                     frequency["column_" + String(column_number)] += 1;
                     id = data[i]["id"];
                     slide_data = "<svg  id='tick' xmlns='http://www.w3.org/2000/svg' width='53' height='53' fill='currentColor' class='bi bi-check' viewBox='0 0 16 16'> <path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z' /> </svg> <button id='save_hyperlink_button' value=" + String(id) + "  onclick='Save_hyperlink(this)' class='slide_buttons' > <svg id='save_hyperlink_icon' xmlns='http://www.w3.org/2000/svg' width='23' height='23' fill='currentColor' class='bi bi-save' viewBox='0 0 16 16'> <path d='M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z'/> </svg></button>";
-                    Adding_in_columns(data[i]["url"],  data[i]["name"], column_number, slide_data, data[i]["height"]);
+                    Adding_in_columns(data[i]["url"], data[i]["image"], data[i]["name"], column_number, slide_data, data[i]["height"]);
                     column_height_measure["column_" + String(column_number)] += data[i]["height"] ;
                 }
             }

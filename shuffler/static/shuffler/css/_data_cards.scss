@@ -1,5 +1,4 @@
 .dynamic_data{
-    // box-shadow:1px 1px 7px goldenrod;
     box-shadow:1px 1px 7px var(--icon_color);
     border-radius:15px;
     background-color: black;
@@ -8,8 +7,15 @@
     align-self: flex-start;
     @include flexing($direction:column);
 }
-a{
-    text-decoration:none;
+
+img{
+    max-width:100%;
+    background-color:  var(--main_background_color);
+    border-radius:15px;
+
+}
+a > img{
+    width:300px;
 }
 
 .edit_card_slide{

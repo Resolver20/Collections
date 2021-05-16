@@ -9,8 +9,7 @@
 
 #column_1,#column_2,#column_3,#column_4 {
     margin:10px;
-    background-color: transparent;
-    border-radius:15px;
+    background-color: var(--main_background_color);
     gap:20px;
     filter:blur(var(--blurring));
     width:300px;

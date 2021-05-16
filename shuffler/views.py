@@ -7,6 +7,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 import json
 
 
+
 @login_required
 def home(request):
     return(render(request,'shuffler/home.html'))
@@ -27,9 +28,10 @@ def convert_to_json(query_set):
     for i in query_set:
         val = {
             "id": i.id,
+            "image": i.image_url,
             "name": i.Name,
             "url": i.web_url,
-            "height": i.height,
+            "height": i.image_height,
         }
         temporary.append(val)
     return(temporary)
@@ -62,7 +64,7 @@ def save_hyperlink(request):
         new_one.save()
         count=dummy.save_count
         Collection.objects.filter(id=row_id).update(save_count=count+1)
-    instance = Collection( web_url=dummy.web_url, Name=dummy.Name, height=dummy.height, user_id=request.user.id, content_type=1)
+    instance = Collection(image_url=dummy.image_url, web_url=dummy.web_url, Name=dummy.Name, image_height=round(float(dummy.image_height),2), user_id=request.user.id, content_type=1)
     instance.save()
     return(JsonResponse({"response": "saved"}))
 #hyper_linked_page
@@ -77,11 +79,11 @@ def Save(request):
         val=str(data[i])
         if(len(val) == 0):
            return(JsonResponse({"response": "failed"}))
-    instance = Collection( web_url=data['web_src'], Name=data['name'],  height=data["height"], user_id=request.user.id,content_type=1)
+    instance = Collection(image_url=data['image_addr'], web_url=data['web_src'], Name=data['name'],  image_height=round(float(data["height"]),2), user_id=request.user.id,content_type=1)
     instance.save()
     last_id=Collection.objects.all()
     last_id=last_id.last().id
-    return(JsonResponse({"response": "saved","id":last_id,"height":data["height"]}))
+    return(JsonResponse({"response": "saved","id":last_id,"height":round(float(data["height"]),2)}))
 
 
 @login_required
@@ -107,7 +109,7 @@ def Rewrite(request):
         if(len(val) == 0):
            return(JsonResponse({"response": "failed"}))
     
-    Collection.objects.filter(id=data["id"],user_id=request.user.id).update(  web_url=data['web_src'], Name=data['name'],height=data["height"])
+    Collection.objects.filter(id=data["id"],user_id=request.user.id).update( image_url=data['image_addr'], web_url=data['web_src'], Name=data['name'],image_height=round(float(data["height"]),2))
     return(JsonResponse({"response": "rewritten"}))
 
 

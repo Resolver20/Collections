@@ -39,6 +39,9 @@ $button_background:transparent;
     background-color: $button_background;
     color:var(--icon_color);
     font-size:2em;
+    &:hover{
+    color:blue;
+    }
 }
 #edit_mode_button{
     outline:none; 
@@ -60,20 +63,11 @@ $button_background:transparent;
 }
 #Add_new_button{
      position:relative;
-     top:5px;
-     left:5px;
+     top:-3px;
+     left:2px;
      outline:none;
      border:none;
      background-color: $button_background;
-    //  background-color: pink;
-     width:30px;
-     height:30px;
-     @include flexing();
-      &:hover{
-          #Add_new{
-              color:blue;
-          }
-    }
 }
 #binging_page_button{
      outline:none;

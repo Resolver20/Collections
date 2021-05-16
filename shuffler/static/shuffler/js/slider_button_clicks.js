@@ -95,8 +95,6 @@ export function Rewriter() {
             let response = JSON.parse(this.response);
             if (response["response"] == "rewritten") {
                 console.log("successfully rewritten");
-                Open_Close_PopUp();
-                plus_button.setAttribute("onclick", "Post_data()");
             }
             else {
                 alert("Please Enter all the details");
@@ -105,40 +103,48 @@ export function Rewriter() {
     };
     let new_title = document.getElementById("content_name_value").value;
     let new_href = document.getElementById("web_url_value").value;
-    let new_height = document.getElementById("myRange").value;
+    let new_src = document.getElementById("image_preview").src;
+    let new_image_height = document.getElementById("image_preview").naturalHeight;
+    let new_image_width = document.getElementById("image_preview").naturalWidth;
     let id = current.childNodes[1].childNodes[0].value;
 
     //changing column_height_measure
     let old_height=current.dataset.height;
     let column_div=current.parentElement;
     column_height_measure[column_div.id]-= old_height;
-    column_height_measure[column_div.id]+= new_height;
+    column_height_measure[column_div.id]+= ( new_image_height/  new_image_width) * 300;
     //changing column_height_measure
-    current.childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent = new_title;
-    current.childNodes[0].childNodes[0].setAttribute("href", new_href);
-    current.dataset.height = new_height;
-    current.childNodes[0].childNodes[0].childNodes[0].style.height = String(new_height) + "px";
-    // current.style.height=String(new_height)+"px";
 
-    let params = { "id": id, "web_src": new_href, "name": new_title,"height":new_height};
+    current.childNodes[0].title = new_title;
+    current.childNodes[0].childNodes[0].setAttribute("href", new_href);
+    current.childNodes[0].childNodes[0].childNodes[0].src = new_src;
+    current.dataset.height = (new_image_height / new_image_width) * 300;
+
+    plus_button.setAttribute("onclick", "Post_data()");
+
+    let params = { "id": id, "web_src": new_href, "image_addr": new_src, "name": new_title,"height":(new_image_height/new_image_width)*300};
     rewrite_request.send(JSON.stringify(params));
+    Open_Close_PopUp();
 
 }
 var current = 0;
 export function edit_card(parameter) {
     current =  parameter.parentElement.parentElement;
 
-    let title = current.childNodes[0].childNodes[0].textContent;
+    let title = current.childNodes[0].title;
     let web_url = current.childNodes[0].childNodes[0].getAttribute("href");
+    let image_src = current.childNodes[0].childNodes[0].childNodes[0].src;
 
     Open_Close_PopUp();
 
+    document.getElementById("image_url_src").value = image_src;
     document.getElementById("web_url_value").value = web_url;
     document.getElementById("content_name_value").value = title;
-    document.getElementById("card_handler").style = "border:1px dashed " + (document.body.style.getPropertyValue("--icon_color")).toString() + ";";
-    document.getElementById("card_handler").style.height = String(current.dataset.height)+"px";
-    document.getElementById("card_handler").childNodes[1].textContent = title;
-    document.getElementById("myRange").value=current.dataset.height;
+    document.getElementById("image_preview").src = image_src;
+    let icon = document.getElementById("image_icon");
+    image_icon.style.display = "none";
+    document.getElementById("image_preview").style = "border:1px dashed " + (document.body.style.getPropertyValue("--icon_color")).toString() + ";";
+    console.log(document.getElementById("image_preview"));
     let plus_button = document.getElementById("plus_button");
 
     plus_button.setAttribute("onclick", "Rewriter()");

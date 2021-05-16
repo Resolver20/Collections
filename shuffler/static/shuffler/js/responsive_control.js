@@ -16,6 +16,7 @@ export function reArrange() {
         document.getElementById("column_" + column_number).appendChild(chunck[i]);
         column_height_measure["column_" + column_number] += parseFloat(chunck[i].dataset.height);
         frequency["column_" + String(column_number)] += 1;
+
     }
     for (let i = 1; i < 5; i++) {
         if(column_height_measure["column_"+String(i)]!=Infinity){
@@ -37,27 +38,4 @@ export function start_responsive_trigger() {
     for (let i = index; i < 5; i++) {
         column_height_measure["column_" + String(i)] = Infinity;
     }
-}
-export function correct_input_flexing(){
-    
-    let middle_card=document.getElementById("middle");
-
-    if ( (((String(middle_card.clientWidth) + "px") != document.getElementById("middle_child_1").style.width )&& middle_card.style.display == "flex")  ) {
-      document.getElementById("middle_child_1").style.height =
-        String(document.querySelector("#middle").clientHeight) + "px";
-      document.getElementById("middle_child_1").style.width =
-        String(document.querySelector("#middle").clientWidth) + "px";
-    }
-  let input_main_div = document.getElementById("input_main_div");
-  if (input_main_div.clientHeight != input_main_div.scrollHeight) {
-    input_main_div.style.display = "block";
-  } else {
-    input_main_div.style.display = "flex";
-  }
-  let dotted_card_div=document.getElementById("card_handler_div");
-  let dotted_card=document.getElementById("card_handler");
-  let dotted_card_height = dotted_card.style.height.slice( 0, dotted_card.style.height.length - 2 );
-  if(dotted_card_div.clientHeight<=dotted_card_height){
-        dotted_card.style.height = String(dotted_card_div.clientHeight-30)+"px";
-  }
 }

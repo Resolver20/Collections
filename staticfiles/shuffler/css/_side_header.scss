@@ -19,13 +19,13 @@ $button_background:transparent;
     @include flexing($justification:flex-start,$direction:column);
 }
 .side_header_1{
-    height:calc(100% - 150px);
+    height:82%;
     gap:1%;
     padding:9px;
     @include flexing($justification:flex-start,$direction:column,$alignment:space-around);
 }
 .side_header_2{
-    height:150px;
+    height:18%;
     padding:10px;
     overflow:scroll;
     gap:10%;
@@ -39,6 +39,9 @@ $button_background:transparent;
     background-color: $button_background;
     color:var(--icon_color);
     font-size:2em;
+    &:hover{
+    color:blue;
+    }
 }
 #edit_mode_button{
     outline:none; 
@@ -49,40 +52,32 @@ $button_background:transparent;
 #collection_page{
     color:var(--icon_color);
     &:hover{
-        color:rgb(79,152,202);
+        color:rgba(29, 155, 177, 0.815);
     }
 }
 #main_page{
     color:var(--icon_color);
     &:hover{
-        color:brown;
+        color:lightcoral;
     }
 }
 #Add_new_button{
      position:relative;
-     top:5px;
-     left:5px;
+     top:-3px;
+     left:2px;
      outline:none;
      border:none;
      background-color: $button_background;
-    //  background-color: pink;
-     width:30px;
-     height:30px;
-     @include flexing();
-      &:hover{
-          #Add_new{
-              color:blue;
-          }
-    }
 }
 #binging_page_button{
      outline:none;
      border:none;
      background-color: $button_background;
 }
-
 #finished_page_button{
-    @extend #binging_page_button;
+     outline:none;
+     border:none;
+     background-color: $button_background;
 }
 #edit_mode_icon{
     color:var(--icon_color);
@@ -100,13 +95,5 @@ $button_background:transparent;
     @extend #logout_icon;
 }
 #dark_mode_icon{
-    color:var(--bottom_icon_color);
-}
-#dark_mode_button{
-    @extend #binging_page_button;
-    &:hover{
-        #dark_mode_icon{
-            color:var(--icon_color);
-        }
-    }
+    @extend #logout_icon;
 }
