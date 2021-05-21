@@ -83,6 +83,10 @@ export function save_card(parameter) {
     frame_request.send(JSON.stringify(save_params));
 }
 export function Rewriter() {
+    let new_title = document.getElementById("content_name_value").value;
+    let new_href = document.getElementById("web_url_value").value;
+    let new_height = document.getElementById("myRange").value;
+    let id = current.childNodes[1].childNodes[0].value;
 
     let rewrite_request = new XMLHttpRequest();
     rewrite_request.open("POST", "Rewrite", true);
@@ -94,30 +98,28 @@ export function Rewriter() {
         if (this.status === 200) {
             let response = JSON.parse(this.response);
             if (response["response"] == "rewritten") {
-                console.log("successfully rewritten");
-                Open_Close_PopUp();
-                plus_button.setAttribute("onclick", "Post_data()");
+                 console.log("successfully rewritten");
+
+                 current.childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent = new_title;
+                 current.childNodes[0].childNodes[0].setAttribute("href", new_href);
+                 current.dataset.height = new_height;
+                 current.childNodes[0].childNodes[0].childNodes[0].style.height = String(new_height) + "px";
+                 
+                 Open_Close_PopUp();
+                 plus_button.setAttribute("onclick", "Post_data()");
             }
             else {
                 alert("Please Enter all the details");
             }
         }
     };
-    let new_title = document.getElementById("content_name_value").value;
-    let new_href = document.getElementById("web_url_value").value;
-    let new_height = document.getElementById("myRange").value;
-    let id = current.childNodes[1].childNodes[0].value;
-
+   
     //changing column_height_measure
     let old_height=current.dataset.height;
     let column_div=current.parentElement;
     column_height_measure[column_div.id]-= old_height;
     column_height_measure[column_div.id]+= new_height;
     //changing column_height_measure
-    current.childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent = new_title;
-    current.childNodes[0].childNodes[0].setAttribute("href", new_href);
-    current.dataset.height = new_height;
-    current.childNodes[0].childNodes[0].childNodes[0].style.height = String(new_height) + "px";
     // current.style.height=String(new_height)+"px";
 
     let params = { "id": id, "web_src": new_href, "name": new_title,"height":new_height};
