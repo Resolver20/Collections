@@ -1,10 +1,23 @@
 import {Open_Close_PopUp} from "./glassify.js";
 import {column_height_measure } from "./data_addition.js";
 
-export function delete_card(parameter) {
-    parameter.disabled=true;
+function scale_measure_change(object) {
+    let dynamic_div = object.parentElement.parentElement;
+    let column_div = dynamic_div.parentElement;
+    let column_div_length = column_div.childNodes.length;
+    let height = parseFloat(dynamic_div.dataset.height);
+    if (column_div_length > 1) {
+        column_height_measure[column_div.id] -= 20;
+    }
+    console.log(height + " <--height");
+    column_height_measure[column_div.id] -= height;
+    console.log(column_height_measure);
+}
+
+export function delete_card(object) {
+    object.disabled=true;
     let delete_request = new XMLHttpRequest();
-    let dynamic_div =parameter.parentElement.parentElement;
+    let dynamic_div =object.parentElement.parentElement;
     let instance=dynamic_div;
     delete_request.open("POST", "Delete", true);
     let data = String(document.getElementsByName("csrfmiddlewaretoken")[0].value);
@@ -12,75 +25,80 @@ export function delete_card(parameter) {
     delete_request.getResponseHeader('Content-type', 'application/json');
     delete_request.onload = function () {
         if (this.status === 200) {
+            console.log(object);
             console.log("successfully deleted");
             instance.remove();
+            scale_measure_change(object);
         }
         else{
-            parameter.disabled = false;
+            object.disabled = false;
         }
     };
 
 
-    //changing column_height_measure
-    let height=parseFloat(dynamic_div.dataset.height);
-    let column_div=dynamic_div.parentElement;
-    let column_div_length =column_div.childNodes.length;
-    if(column_div_length>1){
-        column_height_measure[column_div.id]-=20;
-    }
-    console.log(height+" <--height");
-    column_height_measure[column_div.id]-= height;
-    console.log(column_height_measure)
-    //changing column_height_measure
 
-    let params = { "id": parameter.value };
+    let params = { "id": object.value };
     delete_request.send(JSON.stringify(params));
 }
+export function save_card(object) {
 
-export function save_card(parameter) {
-
-    parameter.disabled = true;
-    //changing column_height_measure
-    let dynamic_div = parameter.parentElement.parentElement;
-    let column_div=dynamic_div.parentElement;
-    let column_div_length =column_div.childNodes.length;
-    let height=parseFloat(dynamic_div.dataset.height);
-    if(column_div_length>1){
-        column_height_measure[column_div.id]-=20;
-    }
-    console.log(height + " <--height");
-    column_height_measure[column_div.id]-= height;
-    console.log(column_height_measure);
-    //changing column_height_measure
-
-
+    object.disabled = true;
+    let dynamic_div = object.parentElement.parentElement;
+    
     let instance=dynamic_div;
-
+    
     let frame_request = new XMLHttpRequest();
     let token = String(document.getElementsByName("csrfmiddlewaretoken")[0].value);
-
+    
     frame_request.open("POST", "Frame", true);
     frame_request.setRequestHeader('X-CSRFToken', token);
     frame_request.getResponseHeader('Content-type', 'application/json');
-
+    
     frame_request.onload = function () {
         if (this.status === 200) {
             let response = JSON.parse(this.response);
             if (response["response"] == "saved") {
                 console.log("successfully saved");
                 instance.remove();
+                scale_measure_change(object);
             }
             else{
-                    parameter.disabled = false;
+                    object.disabled = false;
             }
         }
         else {
-            parameter.disabled = false;
+            object.disabled = false;
         }
     };
 
-    let save_params = { "id": parameter.value };
+    let save_params = { "id": object.value };
     frame_request.send(JSON.stringify(save_params));
+}
+export function change_domain(){
+     object.disabled = true;
+     let delete_request = new XMLHttpRequest();
+     let dynamic_div = object.parentElement.parentElement;
+     let instance = dynamic_div;
+     delete_request.open("POST", "DomainChange", true);
+     let data = String(
+       document.getElementsByName("csrfmiddlewaretoken")[0].value
+     );
+     delete_request.setRequestHeader("X-CSRFToken", data);
+     delete_request.getResponseHeader("Content-type", "application/json");
+     delete_request.onload = function () {
+       if (this.status === 200) {
+         console.log("successfully changed");
+         // change_instance to 0 or 1 
+         object.disabled=false;
+       } else {
+         object.disabled = false;
+       }
+     };
+
+
+     let params = { id: object.value };
+     delete_request.send(JSON.stringify(params));
+
 }
 export function Rewriter() {
     let new_title = document.getElementById("content_name_value").value;
@@ -120,6 +138,7 @@ export function Rewriter() {
     column_height_measure[column_div.id]-= old_height;
     column_height_measure[column_div.id]+= new_height;
     //changing column_height_measure
+
     // current.style.height=String(new_height)+"px";
 
     let params = { "id": id, "web_src": new_href, "name": new_title,"height":new_height};
@@ -127,8 +146,8 @@ export function Rewriter() {
 
 }
 var current = 0;
-export function edit_card(parameter) {
-    current =  parameter.parentElement.parentElement;
+export function edit_card(object) {
+    current =  object.parentElement.parentElement;
 
     let title = current.childNodes[0].childNodes[0].textContent;
     let web_url = current.childNodes[0].childNodes[0].getAttribute("href");

@@ -57,9 +57,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-color: grey;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border-top: 1px solid black;
   position: relative;
   top: 2%;
@@ -124,5 +124,13 @@ a:hover {
     width: 97%;
     height: 53%;
   }
+}
+
+.footer_text_div > a {
+  color: darkgrey;
+}
+
+.footer_text_div > a:hover {
+  color: black;
 }
 /*# sourceMappingURL=register.css.map */

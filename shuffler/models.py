@@ -7,6 +7,8 @@ class Collection(models.Model):
        height= models.FloatField(default=0)
        content_type=models.IntegerField(default=0)
        save_count=models.IntegerField(default=0)
+       domain=models.IntegerField(default=1)
+
 class Counter(models.Model):
        current_user_id=models.IntegerField(default=0)
        other_id=models.IntegerField(default=0)

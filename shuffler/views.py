@@ -30,6 +30,7 @@ def convert_to_json(query_set):
             "name": i.Name,
             "url": i.web_url,
             "height": i.height,
+            "domain":i.domain
         }
         temporary.append(val)
     return(temporary)
@@ -106,7 +107,7 @@ def Rewrite(request):
         val=str(data[i])
         if(len(val) == 0):
            return(JsonResponse({"response": "failed"}))
-    
+    # print(data)
     Collection.objects.filter(id=data["id"],user_id=request.user.id).update(  web_url=data['web_src'], Name=data['name'],height=data["height"])
     return(JsonResponse({"response": "rewritten"}))
 

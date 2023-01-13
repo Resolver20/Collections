@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG',default=False,cast=bool)
 
 ALLOWED_HOSTS = ["192.168.0.102", "127.0.0.1",
-                 "192.168.0.104", "192.168.0.107", "192.168.0.105"]
+                 "d7c5-2401-4900-5070-fac2-e8ed-2b50-a282-d93e.ngrok.io"]
 
 
 # Application definition
@@ -79,14 +79,15 @@ WSGI_APPLICATION = 'Main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'collections',
-        # 'USER': 'postgres',
-        # 'PASSWORD': config("PASSWORD"),
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': 'collections',
+        'USER': 'postgres',
+        'PASSWORD': "rookie123",
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

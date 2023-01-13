@@ -7,6 +7,11 @@
     align-items: center;
     align-self: flex-start;
     @include flexing($direction:column);
+    // &:hover{
+        // position:relative;
+        // bottom:3px;
+        // box-shadow:1px 1px 7px var(--icon_color);
+    // }
 }
 a{
     text-decoration:none;
@@ -26,6 +31,7 @@ a{
 
 .slide_buttons{
     background-color:transparent;
+    color:white;
     border:none;
 }
 
@@ -51,4 +57,12 @@ a{
     color:red;
 
      }
+}
+#private_public{
+    color: var(--bottom_icon_color);
+    
+        &:hover {
+            color: maroon;
+    
+        }
 }
