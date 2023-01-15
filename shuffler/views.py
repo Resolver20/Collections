@@ -41,7 +41,7 @@ def access_user_hyperlinks(request):
     data = json.load(request)
     if(data["type"]=="user"):
       input_value=User.objects.filter(username=data["search_value"])[0].id
-      query_set=Collection.objects.filter(user_id=input_value)
+      query_set=Collection.objects.filter(user_id=input_value,domain=0)
     else:
       input_value=data["search_value"]
       query_set = Collection.objects.annotate(similarity=TrigramSimilarity('Name', input_value)).filter( similarity__gt=0.3).order_by('-similarity')[:100]
@@ -63,7 +63,7 @@ def save_hyperlink(request):
         new_one.save()
         count=dummy.save_count
         Collection.objects.filter(id=row_id).update(save_count=count+1)
-    instance = Collection( web_url=dummy.web_url, Name=dummy.Name, height=dummy.height, user_id=request.user.id, content_type=1)
+    instance = Collection( web_url=dummy.web_url, Name=dummy.Name, height=dummy.height, user_id=request.user.id, content_type=1,domain=0)
     instance.save()
     return(JsonResponse({"response": "saved"}))
 #hyper_linked_page
@@ -78,7 +78,7 @@ def Save(request):
         val=str(data[i])
         if(len(val) == 0):
            return(JsonResponse({"response": "failed"}))
-    instance = Collection( web_url=data['web_src'], Name=data['name'],  height=data["height"], user_id=request.user.id,content_type=1)
+    instance = Collection( web_url=data['web_src'], Name=data['name'],  height=data["height"], user_id=request.user.id,content_type=1,domain=data["domain"])
     instance.save()
     last_id=Collection.objects.all()
     last_id=last_id.last().id
@@ -107,10 +107,22 @@ def Rewrite(request):
         val=str(data[i])
         if(len(val) == 0):
            return(JsonResponse({"response": "failed"}))
-    # print(data)
-    Collection.objects.filter(id=data["id"],user_id=request.user.id).update(  web_url=data['web_src'], Name=data['name'],height=data["height"])
+    print(data)
+    Collection.objects.filter(id=data["id"],user_id=request.user.id).update(  web_url=data['web_src'], Name=data['name'],height=data["height"],domain=data["domain"])
     return(JsonResponse({"response": "rewritten"}))
 
+
+@login_required
+def domainChange(request):
+    data = json.load(request)
+    print(data)
+    for i in data:
+        val = str(data[i])
+        if(len(val) == 0):
+           return(JsonResponse({"response": "failed"}))
+    # print(data)
+    Collection.objects.filter(id=data["id"], user_id=request.user.id).update(domain=data["domain"])
+    return(JsonResponse({"response": "rewritten"}))
 
 @login_required
 def Save_Frame(request):
@@ -126,4 +138,5 @@ def Save_Frame(request):
 def access_frame(request):
     query_set=Collection.objects.filter(user_id=request.user.id,content_type=2)
     Json_data=convert_to_json(query_set)
+    print(Json_data)
     return(JsonResponse({"data": Json_data}))

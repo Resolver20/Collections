@@ -1,5 +1,5 @@
 import {correct_input_flexing} from "./responsive_control.js";
-
+import { unlock_icon } from "./icons.js";
 export function Go_to_edit_mode() {
     let key = 0;
     let cards = document.getElementsByClassName("edit_card_slide");
@@ -26,13 +26,15 @@ export function Go_to_edit_mode() {
 export function Open_Close_PopUp() {
     let middle_card = document.getElementById("middle");
     let buttons = document.getElementsByTagName("button");
+    let middle_card_buttons=["plus_button","cross_button","pp_button"];
     if (middle_card.style.display == "flex") {
 
         document.getElementById("middle_child_1").style.heigh="100%";
         middle_card.style.display = "none";
 
         for (let i = 0; i < buttons.length; i++) {
-            if (buttons[i].id != "plus_button" && buttons[i].id != "cross_button") {
+            // if (buttons[i].id != "plus_button" && buttons[i].id != "cross_button" && buttons[i].id!="pp_button") {
+            if(middle_card_buttons.indexOf(buttons[i].id)<0){
                 buttons[i].removeAttribute("disabled");
             }
         }
@@ -47,9 +49,12 @@ export function Open_Close_PopUp() {
         document.getElementById("myRange").value = "160";
         document.getElementById("card_handler").childNodes[1].textContent = "";
         document.getElementById("card_handler").style.height= "160px";
+        let pp_button = document.getElementById("pp_button");
+        pp_button.innerHTML=unlock_icon();
                 middle_card.style.display = "flex";
                 for (let i = 0; i < buttons.length; i++) {
-                    if (buttons[i].id != "plus_button" && buttons[i].id != "cross_button") {
+                    // if (buttons[i].id != "plus_button" && buttons[i].id != "cross_button") {
+                    if (middle_card_buttons.indexOf(buttons[i].id) < 0) {
                         buttons[i].setAttribute("disabled", "disabled");
                     }
                 }

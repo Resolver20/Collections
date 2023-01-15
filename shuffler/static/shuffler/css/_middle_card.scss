@@ -121,23 +121,34 @@ input[type="range"] {
 #plus_button_div {
   // width: 15%;
   height: 70px;
+  margin-top:10px;
   // background-color: yellow;
-  @include flexing();
+  @include flexing($direction:column);
 }
 
 #plus_button {
   outline: none;
+
   color: var(--icon_color);
   border: none;
   background-color: var(--main_background_color);
+  // background-color: green;
 
   &:hover {
     color: blue;
   }
 }
 
-#middle_buttons{
-  display:flex;
-  flex-direction:column;
-  background-color:green;
+#pp_button{
+  outline: none;
+  color: var(--icon_color);
+  border: none;
+  // background-color: pink;
+  background-color: transparent;
+
+  &:hover {
+    color: blue;
+  }
+
 }
+

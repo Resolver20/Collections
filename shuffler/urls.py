@@ -7,6 +7,7 @@ urlpatterns = [
     path("access", views.Access, name="access"),
     path("Save", views.Save, name="save"),
     path("Rewrite", views.Rewrite, name="rewrite"),
+    path("domainChange", views.domainChange, name="domainChange"),
     path("Frame", views.Save_Frame, name="frame"),
     path("saved_collections", views.saved_collections, name="saved_collections"),
     path("Access_frame", views.access_frame, name="access_frame"),

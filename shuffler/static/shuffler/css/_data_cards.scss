@@ -31,12 +31,11 @@ a{
 
 .slide_buttons{
     background-color:transparent;
-    color:white;
+    color:grey;
     border:none;
 }
 
 #edit{
-
     color:var(--bottom_icon_color);
     &:hover{
     color:orange;
@@ -62,7 +61,7 @@ a{
     color: var(--bottom_icon_color);
     
         &:hover {
-            color: maroon;
+            color: white;
     
         }
 }

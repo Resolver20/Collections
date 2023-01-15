@@ -3,6 +3,8 @@ import { Go_to_edit_mode,Open_Close_PopUp } from "./glassify.js";
 import { delete_card,edit_card,Rewriter } from "./slider_button_clicks.js";
 import { color_change} from "./shift_colors.js";
 import { reArrange, correct_input_flexing } from "./responsive_control.js";
+import { icon_changer } from "./slider_button_clicks.js";
+import {change_domain} from "./slider_button_clicks.js";
 
 window.color_change=color_change;
 window.onload = ShowData("Access_frame");
@@ -14,6 +16,9 @@ window.Go_to_edit_mode = Go_to_edit_mode;
 window.delete_card = delete_card;
 window.edit_card = edit_card;
 window.reArrange = reArrange;
+window.change_domain=change_domain;
+window.icon_changer=icon_changer;
+
 
 let three_column = window.matchMedia("(max-width:1347px)");
 let two_column = window.matchMedia("(max-width:1029px)");

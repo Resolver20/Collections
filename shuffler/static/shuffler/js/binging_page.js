@@ -1,9 +1,12 @@
 import { Return_smallest_column ,Adding_in_columns, ShowData,column_height_measure } from "./data_addition.js";
 import {Go_to_edit_mode,Open_Close_PopUp} from "./glassify.js";
-import {delete_card,Rewriter,edit_card,save_card} from "./slider_button_clicks.js";
+import {delete_card,Rewriter,edit_card,save_card,change_domain} from "./slider_button_clicks.js";
 import {color_change} from "./shift_colors.js";
 import {reArrange,correct_input_flexing} from "./responsive_control.js";
-import {add_delete_option,add_edit_option,add_save_option} from "./data_addition.js";
+import { icon_changer } from "./slider_button_clicks.js";
+import {add_delete_option,add_edit_option,add_save_option,priv_or_public} from "./data_addition.js";
+import { lock_icon,unlock_icon,edit_icon,delete_icon,save_icon } from "./icons.js";
+
 "use strict";
 window.color_change = color_change;
 window.correct_input_flexing=correct_input_flexing;
@@ -19,6 +22,7 @@ window.edit_card=edit_card;
 window.delete_card=delete_card;
 window.save_card=save_card;
 window.reArrange=reArrange;
+window.change_domain=change_domain;
 
 
 let three_column = window.matchMedia("(max-width:1347px)");
@@ -57,9 +61,9 @@ document.getElementById("myRange").max = String( document.getElementById("card_h
 //middle card event listeners
 
 function Post_data() {
+    let domain=0;
     let plus_button=document.getElementById("plus_button");
     plus_button.disabled=true;
-
     let save_request = new XMLHttpRequest();
     let token = String(document.getElementsByName("csrfmiddlewaretoken")[0].value);
     save_request.open("POST", "Save", true);
@@ -76,6 +80,7 @@ function Post_data() {
                 let height=parseFloat(response["height"]);
                 let column_number=Return_smallest_column();
                 let slide_data = add_delete_option(id) + add_save_option(id) + add_edit_option(id);
+                slide_data+=priv_or_public(domain,id);
                 Adding_in_columns(save_params["web_src"],  save_params["name"], column_number, slide_data, height);
 
                 if(column_height_measure["column_" + String(column_number)]!=0){
@@ -102,12 +107,16 @@ function Post_data() {
         plus_button.disabled = false;
     };
     let height = document.getElementById("myRange").value;
-    console.log(height);
+    // console.log(height);
 
     let web = document.getElementById("web_url_value");
     let name = document.getElementById("content_name_value");
-    let save_params = { "web_src": web.value,  "name": name.value ,"height":height};
+    let domain_attr = document.getElementById("pp_button").childNodes[0].getAttribute("value");
+    if(domain_attr=="lock"){domain=1;}
+    else{domain=0;}
+    let save_params = { "web_src": web.value,  "name": name.value ,"height":height,"domain":domain};
     save_request.send(JSON.stringify(save_params));
 
 }
 window.Post_data=Post_data;
+window.icon_changer=icon_changer;
