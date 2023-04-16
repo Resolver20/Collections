@@ -110,3 +110,25 @@ $button_background:transparent;
         }
     }
 }
+#recommendation{
+        outline: none;
+        border: none;
+        background-color: $button_background;
+        margin-top: 5%;;
+}
+#recommendation_page {
+    color: var(--icon_color);
+    &:hover {
+        color: rgb(221, 188, 80);
+    }
+}
+#page_title{
+    width:10px;
+    height:10px;
+    writing-mode:vertical-rl;
+    margin-left:55%;
+font-family: 'Stick No Bills', sans-serif;
+    margin-top:55%;
+    color:var(--icon_color);
+    opacity:0.6;
+}

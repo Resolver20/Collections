@@ -80,7 +80,7 @@ function Show_user_hyperlinks(){
     xhr.send(JSON.stringify({ "search_value": document.getElementById("card_search_input").value ,"type":type}));
 
 }
-function Save_hyperlink(parameter){
+export function Save_hyperlink(parameter){
         parameter.disabled=true;
         let id=parameter.value;
         let parent_style = parameter.parentElement.parentElement.style;

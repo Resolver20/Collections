@@ -120,6 +120,31 @@
   color: var(--icon_color);
 }
 
+#recommendation {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin-top: 5%;
+}
+
+#recommendation_page {
+  color: var(--icon_color);
+}
+#recommendation_page:hover {
+  color: rgb(221, 188, 80);
+}
+
+#page_title {
+  width: 10px;
+  height: 10px;
+  writing-mode: vertical-rl;
+  margin-left: 55%;
+  font-family: "Stick No Bills", sans-serif;
+  margin-top: 55%;
+  color: var(--icon_color);
+  opacity: 0.6;
+}
+
 #content, #search_content {
   width: 96.5%;
   height: 100vh;
@@ -347,33 +372,19 @@ a {
   width: 30px;
   height: 30px;
   opacity: 0;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.1s;
-          animation-delay: 0.1s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.1s;
 }
 
 #save_hyperlink_button {
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
   position: relative;
   left: -17%;
 }
 #save_hyperlink_button:hover #save_hyperlink_icon {
   color: rgb(111, 224, 178);
-}
-
-@-webkit-keyframes opaciting_up {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes opaciting_up {
@@ -384,28 +395,12 @@ a {
     opacity: 1;
   }
 }
-@-webkit-keyframes opaciting_down {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 @keyframes opaciting_down {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
-  }
-}
-@-webkit-keyframes downing {
-  from {
-    background-size: 100% 100%;
-  }
-  to {
-    background-size: 100% 200%;
   }
 }
 @keyframes downing {
@@ -577,12 +572,6 @@ input[type=range] {
   color: blue;
 }
 
-@-webkit-keyframes spinner {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes spinner {
   to {
     transform: rotate(360deg);
@@ -601,8 +590,7 @@ input[type=range] {
   border-radius: 50%;
   border: 2px solid var(--main_background_color);
   border-top-color: rgb(99, 99, 207);
-  -webkit-animation: spinner 0.6s linear infinite;
-          animation: spinner 0.6s linear infinite;
+  animation: spinner 0.6s linear infinite;
   z-index: 2;
 }
 

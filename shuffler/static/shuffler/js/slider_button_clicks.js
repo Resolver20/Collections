@@ -110,7 +110,7 @@ export function change_domain(object){
          object.disabled = false;
        }
      };
-     console.log(object.childNodes);
+    //  console.log(object.childNodes);
      if(object.childNodes[0].getAttribute("value")=="lock"){
         alt_domain=0;
      }
@@ -180,7 +180,7 @@ export function Rewriter() {
     else{
         domain=0;
     }
-    console.log(domain);
+    // console.log(domain);
     let params = { "id": id, "web_src": new_href, "name": new_title,"height":new_height,"domain":domain};
     rewrite_request.send(JSON.stringify(params));
 
