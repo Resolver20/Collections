@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '8m^3x8fevtw_#-=a-ze(7-qazcldam_$9h-jehc)wt*&pavtob'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG',default=False,cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = ["192.168.0.102", "127.0.0.1",
                  "d7c5-2401-4900-5070-fac2-e8ed-2b50-a282-d93e.ngrok.io"]
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'crispy_bootstrap5',  # Forgetting this was probably your error
     'shuffler',
     'users'
 ]
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'Main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,11 +84,17 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': 'collections',
-        'USER': 'postgres',
-        'PASSWORD': "rookie123",
-        'HOST': 'localhost',
-        'PORT': '5433',
+        # 'NAME': 'collections',
+        # 'USER': 'postgres',
+        # 'PASSWORD': "rookie123",
+        # 'HOST': 'localhost',
+        # 'PORT': '5433',
+
+         'NAME': 'neondb',
+        'USER': 'neondb_owner',
+        'PASSWORD': '1rQuFk6Bghof',
+        'HOST': 'ep-withered-sun-a1qi7c5x.ap-southeast-1.aws.neon.tech',
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 
@@ -135,6 +142,7 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-CRISPY_TEMPLATE_PACK="bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL="home"
 LOGIN_URL="login"
