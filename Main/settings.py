@@ -25,8 +25,8 @@ SECRET_KEY = '8m^3x8fevtw_#-=a-ze(7-qazcldam_$9h-jehc)wt*&pavtob'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.0.102", "127.0.0.1",
-                 "d7c5-2401-4900-5070-fac2-e8ed-2b50-a282-d93e.ngrok.io","collections-ltswy40cq-resolver20s-projects.vercel.app"]
+ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
