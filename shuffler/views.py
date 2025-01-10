@@ -5,11 +5,9 @@ from .models import  Collection,Counter
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import TrigramSimilarity
 import json
-import pandas as pd 
-import numpy as np
-from sklearn.neighbors import NearestNeighbors
-from sklearn import preprocessing
-from scipy.sparse import csr_matrix
+# import pandas as pd 
+# from sklearn.neighbors import NearestNeighbors
+# from sklearn import preprocessing
 
 @login_required
 def home(request):
@@ -109,71 +107,70 @@ def remove_spaces(word):
 @login_required
 def get_recommendations(request):
 
-    current_id=request.user.id-1
-    data = Collection.objects.all()
-    df=pd.DataFrame(list(data.values()))
-    df=df[["id","Name","user_id","content_type"]]
-    df["Name"]=list(map(lambda x :remove_spaces(x) ,df["Name"]))
-    df.rename(columns={"id":"content_id","Name":"content_name","content_type":"rating"},inplace=True)
-    df["rating"]=list(map(lambda x : 5 if x==2 else 3, df["rating"].values.tolist()))
-    le=preprocessing.LabelEncoder()
-    df["encoded_content_name"]=le.fit_transform(df["content_name"])
-    print("df",df)
-    pivoted_df=df.pivot_table(
-        columns="content_name",
-        index="user_id",
-        values="rating",
-        aggfunc= lambda x : max(x)
-    ).fillna(0)
-    print("pivoted_df\n",pivoted_df)
-    # df_matrix=csr_matrix(df.values)
-    # print(df_matrix)
-    model_knn=NearestNeighbors(metric="cosine",algorithm="brute")
-    # model_knn.fit(df_matrix)
-    model_knn.fit(pivoted_df)
-    query_index=current_id
-    test_df=pivoted_df.iloc[query_index,:].values.reshape(1,-1)
-    # test_matrix=csr_matrix(test_df)
-    distances, indices = model_knn.kneighbors(test_df, n_neighbors=pivoted_df.shape[0])
-    # distances,indices=model_knn.kneighbors(df.iloc[query_index:].values.reshape(1,-1),n_neighbors=4)
-    print("indices",indices)
-    print("distances",distances)
-    print("current_id",current_id)
-    users=list()
-    secondary=[]
-    primary=[]
-    for i in range(0,len(distances.flatten())):
-        if(i==0):
-            print("recoomentations for {0}\n".format(pivoted_df.index[indices.flatten()[i]]))
-            primary.append(pivoted_df.iloc[indices.flatten()[i],:].values.tolist())
-        elif(distances.flatten()[i]<=0.7):
-            print(" {0}\n".format(pivoted_df.index[indices.flatten()[i]]))
-            secondary.append(pivoted_df.iloc[indices.flatten()[i],:].values.tolist())
-        else:
-            break
-    primary=primary[0]
-    # print(primary)
-    # print(secondary)
-    values=list()
-    for i in secondary:
-        index=0
-        while(index!=len(i)):
-            if(primary[index]!=i[index] and primary[index]==0.0):
-                if(pivoted_df.columns[index] not in values):
-                    values.append(pivoted_df.columns[index])
-            index+=1
-    recommended_id=[]
-    for i in values:
-        if(len(recommended_id)<100):
-            recommended_id.append(df[df["content_name"]==i].values[0][0])
-        else:
-            break
-    query_set=Collection.objects.filter(id__in=recommended_id)
-    Json_data=convert_to_json(query_set)
-    for i in Json_data:
-        print(i)
-    if(len(Json_data)>0):
-        return(JsonResponse({"data": Json_data}))
+    # current_id=request.user.id-1
+    # data = Collection.objects.all()
+    # df=pd.DataFrame(list(data.values()))
+    # df=df[["id","Name","user_id","content_type"]]
+    # df["Name"]=list(map(lambda x :remove_spaces(x) ,df["Name"]))
+    # df.rename(columns={"id":"content_id","Name":"content_name","content_type":"rating"},inplace=True)
+    # df["rating"]=list(map(lambda x : 5 if x==2 else 3, df["rating"].values.tolist()))
+    # le=preprocessing.LabelEncoder()
+    # df["encoded_content_name"]=le.fit_transform(df["content_name"])
+    # print("df",df)
+    # pivoted_df=df.pivot_table(
+    #     columns="content_name",
+    #     index="user_id",
+    #     values="rating",
+    #     aggfunc= lambda x : max(x)
+    # ).fillna(0)
+    # print("pivoted_df\n",pivoted_df)
+    # # print(df_matrix)
+    # model_knn=NearestNeighbors(metric="cosine",algorithm="brute")
+    # # model_knn.fit(df_matrix)
+    # model_knn.fit(pivoted_df)
+    # query_index=current_id
+    # test_df=pivoted_df.iloc[query_index,:].values.reshape(1,-1)
+    # distances, indices = model_knn.kneighbors(test_df, n_neighbors=pivoted_df.shape[0])
+    # # distances,indices=model_knn.kneighbors(df.iloc[query_index:].values.reshape(1,-1),n_neighbors=4)
+    # print("indices",indices)
+    # print("distances",distances)
+    # print("current_id",current_id)
+    # users=list()
+    # secondary=[]
+    # primary=[]
+    # for i in range(0,len(distances.flatten())):
+    #     if(i==0):
+    #         print("recoomentations for {0}\n".format(pivoted_df.index[indices.flatten()[i]]))
+    #         primary.append(pivoted_df.iloc[indices.flatten()[i],:].values.tolist())
+    #     elif(distances.flatten()[i]<=0.7):
+    #         print(" {0}\n".format(pivoted_df.index[indices.flatten()[i]]))
+    #         secondary.append(pivoted_df.iloc[indices.flatten()[i],:].values.tolist())
+    #     else:
+    #         break
+    # primary=primary[0]
+    # # print(primary)
+    # # print(secondary)
+    # values=list()
+    # for i in secondary:
+    #     index=0
+    #     while(index!=len(i)):
+    #         if(primary[index]!=i[index] and primary[index]==0.0):
+    #             if(pivoted_df.columns[index] not in values):
+    #                 values.append(pivoted_df.columns[index])
+    #         index+=1
+    # recommended_id=[]
+    # for i in values:
+    #     if(len(recommended_id)<100):
+    #         recommended_id.append(df[df["content_name"]==i].values[0][0])
+    #     else:
+    #         break
+    # query_set=Collection.objects.filter(id__in=recommended_id)
+    # Json_data=convert_to_json(query_set)
+    # for i in Json_data:
+    #     print(i)
+    # if(len(Json_data)>0):
+    #     return(JsonResponse({"data": Json_data}))
+    print("NO data");
     return(JsonResponse({"data": "No data"}))
 
 @login_required
