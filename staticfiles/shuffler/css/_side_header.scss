@@ -28,6 +28,7 @@ $button_background:transparent;
     height:150px;
     padding:10px;
     overflow:scroll;
+    scrollbar-width: none;
     gap:10%;
     border-top:1px solid var(--icon_color);
 
@@ -109,4 +110,26 @@ $button_background:transparent;
             color:var(--icon_color);
         }
     }
+}
+#recommendation{
+        outline: none;
+        border: none;
+        background-color: $button_background;
+        margin-top: 5%;;
+}
+#recommendation_page {
+    color: var(--icon_color);
+    &:hover {
+        color: rgb(221, 188, 80);
+    }
+}
+#page_title{
+    width:10px;
+    height:10px;
+    writing-mode:vertical-rl;
+    margin-left:55%;
+font-family: 'Stick No Bills', sans-serif;
+    margin-top:55%;
+    color:var(--icon_color);
+    opacity:0.6;
 }
